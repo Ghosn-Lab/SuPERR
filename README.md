@@ -13,7 +13,7 @@ This document is intended to guide the user through the steps needed to reproduc
 
 # CMS
 
-The Cluster Mismatch Statistic (CMS) is a scoring metric we apply to evaluate whether cells in a single-cell RNA-seq experiment retain the same classification variable (e.g. cell type, function, state) between replicate dataset analyses.
+The Cell Misclassification Statistic (CMS) is a scoring metric we apply to evaluate whether cells in a single-cell RNA-seq experiment retain the same classification variable (e.g. cell type, function, state) between replicate dataset analyses.
 CMS is presented here exactly as in our complementary work "Data Matrix Normalization and Merging Strategies Minimize Batch-specific Systemic Variation in scRNA-Seq Data" which is freely available at https://www.biorxiv.org/content/10.1101/2021.08.18.456898v1.
 
 ## Software Requirements
