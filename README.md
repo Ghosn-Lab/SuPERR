@@ -6,14 +6,15 @@ This work can be found freely available at https://www.biorxiv.org/content/10.11
 In the manuscript "Comprehensive multi-omics single-cell data integration reveals greater heterogeneity in the human immune system" we refer to Manual Gating using a customized strategy of biaxal plots, which was implemented in MATLAB.
 Following the code contained in 'Anti_seq_manual_gating_BM.m' and 'Anti_seq_manual_gating_PBMC.m', we can easily reproduce the polygons used to produce the gates, and therefore reproduce the results of the manuscript.
 
+# CMS
 
-In the manuscript "Comprehensive multi-omics single-cell data integration reveals greater heterogeneity in the human immune system" we refer to a Cluster Mismatch Statistic (CMS). CMS is applied exactly as in our recent publication "Data Matrix Normalization and Merging Strategies Minimize Batch-specific Systemic Variation in scRNA-Seq Data", which is freely available at https://www.biorxiv.org/content/10.1101/2021.08.18.456898v1
+In the manuscript "Comprehensive multi-omics single-cell data integration reveals greater heterogeneity in the human immune system" we refer to a Cell Misclassification Statistic (CMS).
+CMS is applied exactly as in our recent publication "Data Matrix Normalization and Merging Strategies Minimize Batch-specific Systemic Variation in scRNA-Seq Data", which is freely available at https://www.biorxiv.org/content/10.1101/2021.08.18.456898v1
 
 This document is intended to guide the user through the steps needed to reproduce the CMS calculation.
 
-# CMS
 
-The Cell Misclassification Statistic (CMS) is a scoring metric we apply to evaluate whether cells in a single-cell RNA-seq experiment retain the same classification variable (e.g. cell type, function, state) between replicate dataset analyses.
+The CMS is a scoring metric we apply to evaluate whether cells in a single-cell RNA-seq experiment retain the same classification variable (e.g. cell type, function, state) between replicate dataset analyses.
 CMS is presented here exactly as in our complementary work "Data Matrix Normalization and Merging Strategies Minimize Batch-specific Systemic Variation in scRNA-Seq Data" which is freely available at https://www.biorxiv.org/content/10.1101/2021.08.18.456898v1.
 
 ## Software Requirements
