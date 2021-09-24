@@ -29,6 +29,7 @@ The expected runtime for this demo is less than one second.
 
 
 > head(x)
+
 #>                     	ID_1       		ID_2    
 #> AAACCTGCAAGCGAGT		"B_Cells"		"B_Cells"  
 #> AAACCTGCACACAGAG		"NK_CD56Hi"		"NK_CD56Hi"
@@ -40,7 +41,7 @@ The expected runtime for this demo is less than one second.
 #> AAACCTGTCTATCCCG		"Monocyte" 		"Monocyte"
 
 # Find which IDs from workflow 1 match IDs from workflow 2
-> match <- Mismatch.mtx[, 'ref_ID'] == Mismatch.mtx[, 'test_ID']
+> match <- x[, 'ID_1'] == x[, 'ID_2']
 
 # Divide the number of matches by the total number of cells
 > CMS <- sum(match, na.rm = T) / length(match)
