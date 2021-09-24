@@ -55,5 +55,5 @@ In this example, 7 of 8 cells (87.5%) change classification between analyses (re
 The calculated CMS is 0.125, or to say that a 12.5% rate of misclassification is occurring between analyses.
 
 
-CMS can be compared (0-1 scale) to evaluate both the UMAP integration and the cell classification fidelity of a given dataset integration workflow.
+CMS can be compared between analyses to evaluate the cell classification fidelity of a given dataset analysis workflow.
 
