@@ -40,7 +40,7 @@ The expected runtime for this demo is less than one second.
 
 ```
 head(x)
->                     	        ID_1       		 ID_2    
+>                     	         ID_1       		 ID_2    
  AAACCTGCAAGCGAGT		"B_Cells"	  	"B_Cells"  
  AAACCTGCACACAGAG		"NK_CD56Hi"		"NK_CD56Hi"
  AAACCTGGTAAACACA		"NK"       		"NK"       
