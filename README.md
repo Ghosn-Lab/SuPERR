@@ -7,11 +7,11 @@ This work can be found freely available at https://www.biorxiv.org/content/10.11
 ## Normalizing Antibody derived tags (ADT) data
 ADT data was normalized using R package "**dsb**" (https://github.com/niaid/dsb). The background population in the cellranger raw feature-barcode matrix of each sample was determined separately after removing cell barcodes that expressed 0 ADT UMIs. The cell barcodes from the cellranger filtered feature-barcode were considered as real cells.
 ## Manual Gating of single-cell sequencing data
-- In the manuscript "Comprehensive multi-omics single-cell data integration reveals greater heterogeneity in the human immune system" we refer to Manual Gating using a customized strategy of biaxal plots, which was implemented in MATLAB.
-- Following the code contained in **'Anti_seq_manual_gating_BM.m'** and **'Anti_seq_manual_gating_PBMC.m'**, we can easily reproduce the polygons used to produce the gates, and therefore reproduce the results of the manuscript.
-- The major lineages of immune cells were gated using canonical surface protein markers. Cell barcodes that expressed mutually exclusive surface proteins were considered doublets and have been removed from downstream analysis.
+In the manuscript "Comprehensive multi-omics single-cell data integration reveals greater heterogeneity in the human immune system" we refer to Manual Gating using a customized strategy of biaxal plots, which was implemented in MATLAB.  
+Following the code contained in **'Anti_seq_manual_gating_BM.m'** and **'Anti_seq_manual_gating_PBMC.m'**, we can easily reproduce the polygons used to produce the gates, and therefore reproduce the results of the manuscript.
+- The major lineages of immune cells were gated using canonical surface protein markers and total UMIs of the VDJ filtered. Cell barcodes that expressed mutually exclusive surface proteins were considered doublets and have been removed from downstream analysis. 
 ## Sub-clustering of each major lineages
-After
+After defining the 
 
 ## CMS
 
