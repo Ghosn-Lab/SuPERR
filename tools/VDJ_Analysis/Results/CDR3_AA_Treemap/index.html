@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="https://d3js.org/d3.v5.js"></script>
+<title>CDR3 Amino Acid Distribution</title>
+<style>
+
+svg {
+  font: 10px sans-serif;
+}
+
+</style>
+<svg width="1150" height="550"></svg>
+<script>
+
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+var format = d3.format(",d");
+var color = d3.scaleOrdinal(d3.schemeCategory10);
+var treemap = data => d3.treemap()
+    .tile(d3.treemapSquarify)
+    .size([width, height])
+    .padding(1)
+    .round(true)
+    (d3.hierarchy(data)
+        .eachBefore(function(d) { d.data.id = (d.parent ? d.parent.data.id + "-" : "") + d.data.name; })
+        .sum(d => d.value)
+        .sort((a, b) => b.value - a.value));
+
+d3.json("./data/cdr3_aa_data.json").then(function(data) {
+
+  var root = treemap(data);
+
+  var leaf = svg.selectAll("g")
+    .data(root.leaves())
+    .join("g")
+      .attr("transform", d => { return "translate(" + d.x0 + "," + d.y0 + ")"; });
+
+  leaf.append("title")
+      .text(d => `${d.ancestors().reverse().map(d => d.data.name).join("/")}\n${format(d.value)}`);
+
+  leaf.append("rect")
+      .attr("id", d => { return d.data.id; })
+      .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
+      .attr("fill-opacity", 0.6)
+      .attr("width", d => { return d.x1 - d.x0; })
+      .attr("height", d => { return d.y1 - d.y0; })
+      .on("mouseover", function(d){
+            d3.select(this).attr("fill", 'black');
+            var currentChain = d.parent.data.name;
+            var children = d.parent.parent.children;
+            var chainIndex;
+            var chainIndex1;
+            switch (currentChain){
+              case "IGH":
+                var chain;
+                for (chain in children){
+                  if (children[chain].data.name == "IGL"){
+                    chainIndex = chain;
+                  }
+                  else if (children[chain].data.name == "IGK"){
+                    chainIndex1 = chain;
+                  }
+                }
+                var queryBarcode;
+                for (queryBarcode in d.data.barcodes) {
+                  var targetBarcodes;
+                  for (targetBarcodes in children[chainIndex].children){
+                    var isPresent = children[chainIndex].children[targetBarcodes].data.barcodes.includes(d.data.barcodes[queryBarcode]);
+                    if (isPresent == true){
+                      var id = children[chainIndex].children[targetBarcodes].data.id;
+                      // console.log(id);
+                      d3.select(this.parentNode.parentNode).selectAll("g").select("rect#"+id).attr("fill", "black");
+                    }
+                  }
+                  var targetBarcodesK;
+                  for (targetBarcodesK in children[chainIndex1].children){
+                    var isPresent = children[chainIndex1].children[targetBarcodesK].data.barcodes.includes(d.data.barcodes[queryBarcode]);
+                    if (isPresent == true){
+                      var id = children[chainIndex1].children[targetBarcodesK].data.id;
+                      // console.log(id);
+                      d3.select(this.parentNode.parentNode).selectAll("g").select("rect#"+id).attr("fill", "black");
+                    }
+                  }
+                }
+                break;
+              case "IGL":
+                var chain;
+                for (chain in children){
+                  if (children[chain].data.name == "IGH"){
+                    chainIndex = chain;
+                  }
+                }
+                var queryBarcode;
+                for (queryBarcode in d.data.barcodes) {
+                  var targetBarcodes;
+                  for (targetBarcodes in children[chainIndex].children){
+                    var isPresent = children[chainIndex].children[targetBarcodes].data.barcodes.includes(d.data.barcodes[queryBarcode]);
+                    if (isPresent == true){
+                      var id = children[chainIndex].children[targetBarcodes].data.id;
+                      //console.log(id);
+                      d3.select(this.parentNode.parentNode).selectAll("g").select("rect#"+id).attr("fill", "black");
+                    }
+                  }
+                }
+                break;
+              case "IGK":
+                var chain;
+                for (chain in children){
+                  if (children[chain].data.name == "IGH"){
+                    chainIndex = chain;
+                  }
+                }
+                var queryBarcode;
+                for (queryBarcode in d.data.barcodes) {
+                  var targetBarcodes;
+                  for (targetBarcodes in children[chainIndex].children){
+                    var isPresent = children[chainIndex].children[targetBarcodes].data.barcodes.includes(d.data.barcodes[queryBarcode]);
+                    if (isPresent == true){
+                      var id = children[chainIndex].children[targetBarcodes].data.id;
+                      //console.log(id);
+                      d3.select(this.parentNode.parentNode).selectAll("g").select("rect#"+id).attr("fill", "black");
+                    }
+                  }
+                }
+                break;
+              default:
+                break;
+            }
+          })
+      .on("mouseout", function(d){
+            d3.select(this).attr("fill", d => { while (d.depth > 1) d = d.parent; return                                                                                  color(d.data.name); });
+            var currentChain = d.parent.data.name;
+            var children = d.parent.parent.children;
+            var chainIndex;
+            var chainIndex1;
+            switch (currentChain){
+              case "IGH":
+                var chain;
+                for (chain in children){
+                  if (children[chain].data.name == "IGL"){
+                    chainIndex = chain;
+                  }
+                  else if (children[chain].data.name == "IGK"){
+                    chainIndex1 = chain;
+                  }
+                }
+                var queryBarcode;
+                for (queryBarcode in d.data.barcodes) {
+                  var targetBarcodes;
+                  for (targetBarcodes in children[chainIndex].children){
+                    var isPresent = children[chainIndex].children[targetBarcodes].data.barcodes.includes(d.data.barcodes[queryBarcode]);
+                    if (isPresent == true){
+                      var id = children[chainIndex].children[targetBarcodes].data.id;
+                      //console.log(id);
+                      d3.select(this.parentNode.parentNode).selectAll("g").select("rect#"+id).attr("fill", d => { while (d.depth > 1) d = d.parent; return                                                                                  color(d.data.name); });
+                    }
+                  }
+                  var targetBarcodesK;
+                  for (targetBarcodesK in children[chainIndex1].children){
+                    var isPresent = children[chainIndex1].children[targetBarcodesK].data.barcodes.includes(d.data.barcodes[queryBarcode]);
+                    if (isPresent == true){
+                      var id = children[chainIndex1].children[targetBarcodesK].data.id;
+                      //console.log(id);
+                      d3.select(this.parentNode.parentNode).selectAll("g").select("rect#"+id).attr("fill", d => { while (d.depth > 1) d = d.parent; return                                                                                  color(d.data.name); });
+                    }
+                  }
+                }
+                break;
+              case "IGL":
+                var chain;
+                for (chain in children){
+                  if (children[chain].data.name == "IGH"){
+                    chainIndex = chain;
+                  }
+                }
+                var queryBarcode;
+                for (queryBarcode in d.data.barcodes) {
+                  var targetBarcodes;
+                  for (targetBarcodes in children[chainIndex].children){
+                    var isPresent =                       children[chainIndex].children[targetBarcodes].data.barcodes.includes(d.data.barcodes[queryBarcode]);
+                    if (isPresent == true){
+                      var id = children[chainIndex].children[targetBarcodes].data.id;
+                      //console.log(id);
+                      d3.select(this.parentNode.parentNode).selectAll("g").select("rect#"+id).attr("fill", d => { while (d.depth > 1) d = d.parent; return                                                                                  color(d.data.name); });
+                    }
+                  }
+                }
+                break;
+              case "IGK":
+                var chain;
+                for (chain in children){
+                  if (children[chain].data.name == "IGH"){
+                    chainIndex = chain;
+                  }
+                }
+                var queryBarcode;
+                for (queryBarcode in d.data.barcodes) {
+                  var targetBarcodes;
+                  for (targetBarcodes in children[chainIndex].children){
+                    var isPresent =                       children[chainIndex].children[targetBarcodes].data.barcodes.includes(d.data.barcodes[queryBarcode]);
+                    if (isPresent == true){
+                      var id = children[chainIndex].children[targetBarcodes].data.id;
+                      //console.log(id);
+                      d3.select(this.parentNode.parentNode).selectAll("g").select("rect#"+id).attr("fill", d => { while (d.depth > 1) d = d.parent; return                                                                                  color(d.data.name); });
+                    }
+                  }
+                }
+                break;
+              default:
+                break;
+            }
+          });
+
+  leaf.append("clipPath")
+      .attr("id", d => { return "clip-" + d.data.id; })
+    .append("use")
+      .attr("xlink:href", d => { return "#" + d.data.id; });
+
+  leaf.append("text")
+      .attr("clip-path", d => { return "url(#clip-" + d.data.id + ")"; })
+    .selectAll("tspan")
+    .data(d => d.data.name.split(/(?=[A-Z][a-z])|\s+/g).concat(format(d.value)))
+    .join("tspan")
+      .attr("x", 3)
+      .attr("y", (d, i, nodes) => `${(i === nodes.length - 1) * 0.3 + 1.1 + i * 0.9}em`)
+      .attr("fill-opacity", (d, i, nodes) => i === nodes.length - 1 ? 0.7 : null)
+      .text(d => d);
+});
+</script>
