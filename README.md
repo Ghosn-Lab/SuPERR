@@ -3,7 +3,7 @@ These files are intended to support our manuscript titled "Comprehensive multi-o
 This work can be found freely available at https://www.biorxiv.org/content/10.1101/2021.07.25.453651v2
 
 - The workflow of SuPERR-Seq is shown below:  
-  ![Screenshot](workflow_github.png)
+  ![Figure](workflow_github.png)
 
 ## Normalizing Antibody derived tags (ADT) data
 ADT data was normalized using R package "**dsb**" (https://github.com/niaid/dsb). The background population in the cellranger raw feature-barcode matrix of each sample was determined separately after removing cell barcodes that expressed 0 ADT UMIs. The cell barcodes from the cellranger filtered feature-barcode were considered as real cells.
@@ -11,8 +11,12 @@ ADT data was normalized using R package "**dsb**" (https://github.com/niaid/dsb)
 In the manuscript "Comprehensive multi-omics single-cell data integration reveals greater heterogeneity in the human immune system" we refer to Manual Gating using a customized strategy of biaxal plots, which was implemented in MATLAB.  
 Following the code contained in **'Anti_seq_manual_gating_BM.m'** and **'Anti_seq_manual_gating_PBMC.m'**, we can easily reproduce the polygons used to produce the gates, and therefore reproduce the results of the manuscript.
 - The major lineages of immune cells were gated using canonical surface protein markers and total UMIs of the VDJ filtered. Cell barcodes that expressed mutually exclusive surface proteins were considered doublets and have been removed from downstream analysis. 
-## Sub-clustering of each major lineages
-After defining the 
+## Integration of GEX data
+The standard Seurat integration workflow was utilized to generate the integrated matrix: https://satijalab.org/seurat/articles/integration_introduction.html
+## Sub-clustering and classification of each major lineages
+After defining the major lineages of each sample and integrating the GEX data, the conventional GEX analyse was done for each major lineage separately. The sub-clusters were annotated based on DEG (Wilcoxon rank-sum test) analyses.
+## VDJ analysis
+The VDJ analysis was done using cellranger vdj and custom codes (https://github.com/Ghosn-Lab/SuPERR-Seq/blob/main/tools/VDJ_Analysis/VDJ_Analysis_Manual.pdf).
 
 ## CMS
 
