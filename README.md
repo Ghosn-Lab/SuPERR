@@ -2,7 +2,8 @@
 These files are intended to support our manuscript titled "Comprehensive multi-omics single-cell data integration reveals greater heterogeneity in the human immune system".
 This work can be found freely available at https://www.biorxiv.org/content/10.1101/2021.07.25.453651v2
 
-- The workflow of SuPERR-Seq is shown below: (add diagram)
+- The workflow of SuPERR-Seq is shown below:  
+  ![Screenshot](workflow_github.png)
 
 ## Normalizing Antibody derived tags (ADT) data
 ADT data was normalized using R package "**dsb**" (https://github.com/niaid/dsb). The background population in the cellranger raw feature-barcode matrix of each sample was determined separately after removing cell barcodes that expressed 0 ADT UMIs. The cell barcodes from the cellranger filtered feature-barcode were considered as real cells.
