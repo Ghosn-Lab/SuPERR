@@ -14,7 +14,7 @@ Following the code contained in **'Anti_seq_manual_gating_BM.m'** and **'Anti_se
 ## Integration of GEX data
 The standard Seurat integration workflow was utilized to generate the integrated matrix: https://satijalab.org/seurat/articles/integration_introduction.html
 ## Sub-clustering and classification of each major lineages
-After defining the major lineages of each sample and integrating the GEX data, the conventional GEX analyse was done for each major lineage separately. The sub-clusters were annotated based on DEG (Wilcoxon rank-sum test) analyses.
+After defining the major lineages of each sample and integrating the GEX data, the conventional GEX analysis was done for each major lineage separately. The sub-clusters were annotated based on DEG (Wilcoxon rank-sum test) analyses.
 ## VDJ analysis
 The VDJ analysis was done using cellranger vdj and custom codes (https://github.com/Ghosn-Lab/SuPERR-Seq/blob/main/tools/VDJ_Analysis/VDJ_Analysis_Manual.pdf).
 
