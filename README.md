@@ -1,3 +1,4 @@
+# Ghosn Laboratory <img src="https://user-images.githubusercontent.com/50965273/136699995-7f58cf18-2580-4831-aea2-5fccd3c11005.jpg" align="right"  height=200/>
 # SuPERR-Seq
 These files are intended to support our manuscript titled "Comprehensive multi-omics single-cell data integration reveals greater heterogeneity in the human immune system".
 This work can be found freely available at https://www.biorxiv.org/content/10.1101/2021.07.25.453651v2
@@ -27,7 +28,8 @@ This document is intended to guide the user through the steps needed to reproduc
 
 
 The CMS is a scoring metric we apply to evaluate whether cells in a single-cell RNA-seq experiment retain the same classification variable (e.g. cell type, function, state) between replicate dataset analyses.
-CMS is presented here exactly as in our complementary work "Data Matrix Normalization and Merging Strategies Minimize Batch-specific Systemic Variation in scRNA-Seq Data" which is freely available at https://www.biorxiv.org/content/10.1101/2021.08.18.456898v1.
+CMS is presented here exactly as in our complementary work "Data Matrix Normalization and Merging Strategies Minimize Batch-specific Systemic Variation in scRNA-Seq Data" which is freely available at [bioRxiv](https://www.biorxiv.org/content/10.1101/2021.08.18.456898v1).
+More details of CMS may be found [here](https://github.com/Ghosn-Lab/BatchNorm)
 
 ### Software Requirements
 
