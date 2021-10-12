@@ -21,6 +21,8 @@ The gating strategy of PBMC can be found under data/Major_Lineages [here](https:
 
 The gating strategy of BM can be also found in the same directory [here](https://github.com/Ghosn-Lab/SuPERR-Seq/blob/main/data/Major%20lineages/BM_gating_strategy.png)
 
+A vector of the gated identities is located in the same directory and may be used to directly reproduce CMS scores and figures from the paper.
+
 ## Integration of GEX data
 The standard Seurat integration workflow was utilized to generate the integrated matrix: [vignette](https://satijalab.org/seurat/articles/integration_introduction.html.)
 ## Sub-clustering and classification of each major lineages
@@ -39,6 +41,8 @@ This document is intended to guide the user through the steps needed to reproduc
 The CMS is a scoring metric we apply to evaluate whether cells in a single-cell RNA-seq experiment retain the same classification variable (e.g. cell type, function, state) between replicate dataset analyses.
 CMS is presented here exactly as in our complementary work "Data Matrix Normalization and Merging Strategies Minimize Batch-specific Systemic Variation in scRNA-Seq Data" which is freely available at [bioRxiv](https://www.biorxiv.org/content/10.1101/2021.08.18.456898v1).
 More details of CMS may be found [here](https://github.com/Ghosn-Lab/BatchNorm)
+
+The identities used to generate CMS scores in R have been made available as a pre-computed .rds object available [here](https://github.com/Ghosn-Lab/SuPERR-Seq/tree/main/data/Major%20lineages). More details on generating CMS scores from these identities may be found in the "methods" section of our manuscript.
 
 ### Software Requirements
 
