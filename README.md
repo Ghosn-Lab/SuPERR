@@ -16,9 +16,9 @@ In the manuscript "Comprehensive multi-omics single-cell data integration reveal
 Following the code contained in **'Anti_seq_manual_gating_BM.m'** and **'Anti_seq_manual_gating_PBMC.m'**, we can easily reproduce the polygons used to produce the gates, and therefore reproduce the results of the manuscript.
 - The major lineages of immune cells were gated using canonical surface protein markers and total UMIs of the VDJ filtered. Cell barcodes that expressed mutually exclusive surface proteins were considered doublets and have been removed from downstream analysis. 
 
-The gating strategy of PBMC can be found in https://github.com/Ghosn-Lab/SuPERR-Seq/blob/main/data/Major%20lineages/PBMC_gating_strategy.png
+The gating strategy of PBMC can be found under data/Major_Lineages [here](https://github.com/Ghosn-Lab/SuPERR-Seq/blob/main/data/Major%20lineages/PBMC_gating_strategy.png)
+The gating strategy of BM can be also found in the same directory [here](https://github.com/Ghosn-Lab/SuPERR-Seq/blob/main/data/Major%20lineages/BM_gating_strategy.png)
 
-The gating strategy of BM can be found in https://github.com/Ghosn-Lab/SuPERR-Seq/blob/main/data/Major%20lineages/BM_gating_strategy.png
 ## Integration of GEX data
 The standard Seurat integration workflow was utilized to generate the integrated matrix: https://satijalab.org/seurat/articles/integration_introduction.html.
 ## Sub-clustering and classification of each major lineages
