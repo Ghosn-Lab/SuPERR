@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="https://d3js.org/d3.v5.js"></script>
+<title>Circos Plot - Lineage</title>
+<style>
+
+svg {
+  font: 10px sans-serif;
+}
+
+</style>
+<svg width="1150"></svg>
+<script>
+
+d3.json("./data/circos.json").then(function(data) {
+  const indexByName = new Map;
+  const nameByIndex = new Map;
+  const matrix = [];
+  let n = 0;
+
+  // Returns the Flare package name for the given class name.
+  function name(name) {
+    return name;
+  }
+
+  // Compute a unique index for each package name.
+  data.forEach(d => {
+    if (!indexByName.has(d = name(d.name))) {
+      nameByIndex.set(n, d);
+      indexByName.set(d, n++);
+    }
+  });
+
+  // Construct a square matrix counting package imports.
+  data.forEach(d => {
+    const source = indexByName.get(name(d.name));
+    let row = matrix[source];
+    if (!row) row = matrix[source] = d.matrix;
+    //d.imports.forEach(d => row[indexByName.get(name(d))]++);
+  });
+
+  cirData = {matrix, indexByName, nameByIndex};
+  width = 954,
+  height = width,
+  outerRadius = Math.min(width, height) * 0.5,
+  innerRadius = outerRadius - 124;
+  color = d3.scaleOrdinal(d3.schemeCategory10);
+  ribbon = d3.ribbon()
+            .radius(innerRadius);
+  arc = d3.arc()
+          .innerRadius(innerRadius)
+          .outerRadius(innerRadius + 20);
+  chord = d3.chord()
+            .padAngle(.04)
+            .sortSubgroups(d3.descending)
+            .sortChords(d3.descending);
+
+  const svg = d3.select("svg")
+      .attr("viewBox", [-width / 2, -height / 2, width, height])
+      .style("width", "100%")
+      .style("height", "auto");
+
+  const chords = chord(cirData.matrix);
+
+  const group = svg.append("g")
+                  .selectAll("g")
+                  .data(chords.groups)
+                  .join("g");
+
+  group.append("path")
+      .attr("fill", d => color(d.index))
+      .attr("stroke", d => color(d.index))
+      .attr("d", arc);
+
+  group.append("text")
+      .each(d => { d.angle = (d.startAngle + d.endAngle) / 2; })
+      .attr("dy", ".35em")
+      .attr("transform", d => `
+        rotate(${(d.angle * 180 / Math.PI - 90)})
+        translate(${innerRadius + 26})
+        ${d.angle > Math.PI ? "rotate(180)" : ""}
+      `)
+      .attr("text-anchor", d => d.angle > Math.PI ? "end" : null)
+      .text(d => cirData.nameByIndex.get(d.index));
+
+  svg.append("g")
+      .attr("fill-opacity", 0.67)
+    .selectAll("path")
+    .data(chords)
+    .join("path")
+      .attr("stroke", d => d3.rgb(color(d.source.index)).darker())
+      .attr("fill", d => color(d.source.index))
+      .attr("d", ribbon);
+
+});
+
+</script>
