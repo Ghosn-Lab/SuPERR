@@ -6,14 +6,21 @@ This work can be found freely available at https://www.biorxiv.org/content/10.11
 - The workflow of SuPERR-Seq is shown below:  
   ![Figure](workflow_github.jpg)
 
+- The cellranger filtered GEX and ADT matrices can also be downloaded from https://github.com/Ghosn-Lab/SuPERR-Seq/blob/main/data/raw_GEX%2BADT.RData
 ## Normalizing Antibody derived tags (ADT) data
 ADT data was normalized using R package "**dsb**" (https://github.com/niaid/dsb). The background population in the cellranger raw feature-barcode matrix of each sample was determined separately after removing cell barcodes that expressed 0 ADT UMIs. The cell barcodes from the cellranger filtered feature-barcode were considered as real cells.
+
+The DSB normalized ADT matrices that also contain the feature of Total VDJ UMIs can be found in https://github.com/Ghosn-Lab/SuPERR-Seq/tree/main/data/DSB_normalized_ADT
 ## Manual Gating of single-cell sequencing data
 In the manuscript "Comprehensive multi-omics single-cell data integration reveals greater heterogeneity in the human immune system" we refer to Manual Gating using a customized strategy of biaxal plots, which was implemented in MATLAB.  
 Following the code contained in **'Anti_seq_manual_gating_BM.m'** and **'Anti_seq_manual_gating_PBMC.m'**, we can easily reproduce the polygons used to produce the gates, and therefore reproduce the results of the manuscript.
 - The major lineages of immune cells were gated using canonical surface protein markers and total UMIs of the VDJ filtered. Cell barcodes that expressed mutually exclusive surface proteins were considered doublets and have been removed from downstream analysis. 
+
+The gating strategy of PBMC can be found in https://github.com/Ghosn-Lab/SuPERR-Seq/blob/main/data/Major%20lineages/PBMC_gating_strategy.png
+
+The gating strategy of BM can be found in https://github.com/Ghosn-Lab/SuPERR-Seq/blob/main/data/Major%20lineages/BM_gating_strategy.png
 ## Integration of GEX data
-The standard Seurat integration workflow was utilized to generate the integrated matrix: https://satijalab.org/seurat/articles/integration_introduction.html
+The standard Seurat integration workflow was utilized to generate the integrated matrix: https://satijalab.org/seurat/articles/integration_introduction.html.
 ## Sub-clustering and classification of each major lineages
 After defining the major lineages of each sample and integrating the GEX data, the conventional GEX analysis was done for each major lineage separately. The sub-clusters were annotated based on DEG (Wilcoxon rank-sum test) analyses.
 ## VDJ analysis
