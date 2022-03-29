@@ -4,7 +4,7 @@ These files are intended to support our manuscript titled "Comprehensive multi-o
 This work can be found freely available at [bioRxiv](https://www.biorxiv.org/content/10.1101/2021.07.25.453651v2).
 
 - The workflow of SuPERR-Seq is shown below:  
-  ![Figure](workflow_github.png)
+  ![Figure](workflow_githubv2.png)
 
 - The cellranger filtered GEX and ADT matrices can also be downloaded directly from our data directory [here](https://github.com/Ghosn-Lab/SuPERR-Seq/blob/main/data/raw_GEX%2BADT.RData) in order to fully reproduce the figures and results of our manuscript.
 
