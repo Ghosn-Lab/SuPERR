@@ -3,7 +3,7 @@ library(ggpubr)
 library(VennDiagram)
 
 ### Function----
-source("C:/Users/jyan399/OneDrive - Emory University/Box/Junkai Yang Ghosn Lab/updates/SuPERR-seq/submission/Code/SuPERR_figure code/Ben_CFS.R")
+source("Ben_CFS.R")
 misclassification<-function(object=NULL,cell_type=NULL,clusters=NULL){
   classification<-data.frame(row.names = colnames(object),
                              ADT=object@meta.data[,cell_type],
